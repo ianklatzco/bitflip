@@ -18,6 +18,7 @@ instance Show Val where
     show (IntVal i) = show i
     show (BoolVal i) = show i
     show (BinListVal xs) = concat $ map show xs
+    show (ExceptionVal s) = show s
 
 --- ### Expressions
 data Exp = IntExp Int
@@ -56,7 +57,8 @@ eval (BinListExp str) env = BinListVal str
 
 
 --- Exec
---- Exec is a thin wrapper around eval to allow for modification of the env and returning a string result to be printed.
+--- Exec is a thin wrapper around eval to allow for modification of the env 
+--- and returning a string result to be printed.
 --- ----
 
 -- Variable Assignment
@@ -75,9 +77,4 @@ exec (PrintExp varstring) env =
             Nothing -> ("Not found", env)
             Just (BinListVal x) -> (x++"\n", env)
             Just (ExceptionVal x) -> ("Exception!: " ++x  ++"\n", env)
-
-
-
-
-
 

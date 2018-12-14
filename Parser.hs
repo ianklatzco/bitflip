@@ -114,14 +114,3 @@ atom = binListExpParser
    <|> assignmentExpParser
    <|> reassignmentExpParser
 
--- case parse atom "stdin" input of
---     Right x -> 
-
---         Right x -> let (nuresult,nupenv,nuenv) = exec x penv env
---                    in do {
---                      putStrLn nuresult;
---                      repl nupenv nuenv [] "stdin"
---                    }
---         Left x -> do putStrLn $ show x
---                      repl penv env [] "stdin"
-

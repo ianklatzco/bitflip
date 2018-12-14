@@ -23,14 +23,19 @@ repl env =
      hFlush stdout
      input <- getLine
 
-     case parse atom "stdin" input of
-     --    Right QuitStmt -> do putStrLn "Bye!"
-     --                         return ()
-        Right x -> let (newresult,newenv) = exec x env
-                   in do {
-                     putStr newresult;
-                     repl newenv
-                   }
-        Left x -> do putStrLn $ show x
-                     repl env
+     if input == "help" then
+        do
+            putStrLn "https://twitter.com/quietly_turning/status/1073274423766065152"
+            repl env
+     else
+         case parse atom "stdin" input of
+         --    Right QuitStmt -> do putStrLn "Bye!"
+         --                         return ()
+            Right x -> let (newresult,newenv) = exec x env
+                       in do {
+                         putStr newresult;
+                         repl newenv
+                       }
+            Left x -> do putStrLn $ show x
+                         repl env
 
