@@ -76,5 +76,6 @@ exec (PrintExp varstring) env =
         case res of
             Nothing -> ("Not found", env)
             Just (BinListVal x) -> (x++"\n", env)
+            Just (IntVal x) -> ((show x)++"\n", env)
             Just (ExceptionVal x) -> ("Exception!: " ++x  ++"\n", env)
 
