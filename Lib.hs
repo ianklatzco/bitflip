@@ -7,11 +7,13 @@ type Env  = H.HashMap String Val
 --- ### Values
 data Val = IntVal Int
          | BoolVal Bool
+         | BinListVal [Int]
     deriving (Eq)
 
 instance Show Val where
     show (IntVal i) = show i
     show (BoolVal i) = show i
+    show (BinListVal xs) = concat $ map show xs
 
 --- ### Expressions
 data Exp = IntExp Int

@@ -6,23 +6,7 @@ import Data.HashMap.Strict as H (HashMap, empty, fromList, insert, lookup, union
 import Lib
 import Parser
 
-read' :: IO String
-read' = putStr "flipREPL> "
-     >> hFlush stdout
-     >> getLine
 
-eval' :: String -> String
-eval' input = input
-
-print' :: String -> IO ()
-print' = putStrLn
-
--- main :: IO ()
--- main = do
---   input <- read'
-
---   unless (input == "quit")
---        $ print' (eval' input) >> main
 
 main :: IO ()
 main = do

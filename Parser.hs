@@ -30,7 +30,7 @@ symbol s = do string s
 -- when run through parse, will return an int.
 -- kinda an argument to the parse function
 int :: Parser Int
-int = do digits <- many1 digit <?> "an integer"
+int = do digits <- many1 digit <?> "an integer" -- right side of <?> is error msg
          spaces
          return (read digits :: Int)
 
