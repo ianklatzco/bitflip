@@ -28,9 +28,9 @@ repl env =
      --                         return ()
         Right x -> let (newresult,newenv) = exec x env
                    in do {
-                     putStrLn newresult;
+                     putStr newresult;
                      repl newenv
                    }
-        -- Left x -> do putStrLn $ show x
-        --              repl penv env [] "stdin"
+        Left x -> do putStrLn $ show x
+                     repl env
 

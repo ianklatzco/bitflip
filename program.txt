@@ -1,0 +1,5 @@
+let bits = 0b00111100;
+bits = (ノ ゜Д゜)ノ ︵  bits;
+print(bits);
+// 11000011
+

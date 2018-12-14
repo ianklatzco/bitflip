@@ -10,3 +10,11 @@ convertBase from to = digits to . unDigits from
 binary_convert :: [Int] -> Int
 binary_convert [] = 0
 binary_convert (x : xs) = x + 2 * binary_convert xs
+
+flip_bits :: String -> String
+flip_bits [] = []
+flip_bits (x:xs) = 
+    if x == '1' then
+        '0' : flip_bits xs
+    else
+        '1' : flip_bits xs

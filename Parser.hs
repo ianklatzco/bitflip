@@ -91,9 +91,17 @@ reassignmentExpParser =
     do
         v <- var
         symbol "="
-        e <- flipExpParser -- This doesn't do proper reassignment, but whatever.
-        symbol ";"
+        e <- atom
         return $ ReassignmentExp v e
+
+printExpParser :: Parser Exp
+printExpParser = 
+    do
+      symbol "print"
+      symbol "("
+      name <- var
+      symbol ")"
+      return $ PrintExp name
 
 -- (<|>) :: (Alternative f) => f a -> f a -> f a
 -- it's an operator from Parsec, means "try any of these!"
@@ -101,6 +109,7 @@ atom :: Parser Exp
 atom = binListExpParser
    <|> intExp
    <|> try boolExp -- why is the try necessary?
+   <|> printExpParser
    <|> flipExpParser
    <|> assignmentExpParser
    <|> reassignmentExpParser
