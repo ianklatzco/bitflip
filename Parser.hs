@@ -4,7 +4,12 @@ import Text.ParserCombinators.Parsec hiding (Parser)
 import Text.Parsec.Prim (ParsecT)
 import Data.Functor.Identity
 
+import Data.Char
+import Data.Digits (digits, unDigits)
+import Data.Bits
+
 import Lib
+import Util
 
 --- Parser
 --- ------
@@ -33,6 +38,12 @@ int :: Parser Int
 int = do digits <- many1 digit <?> "an integer" -- right side of <?> is error msg
          spaces
          return (read digits :: Int)
+
+-- returns [1,2,0,0,0,1]
+binlist :: Parser [Int]
+binlist = do _ <- string "0b"
+             all_digits <- many1 digit <?> "oopsie woopsie"
+             return $ digits 10 (read all_digits :: Int)
 
 -- Expressions
 
@@ -68,7 +79,3 @@ atom = intExp
 --         Left x -> do putStrLn $ show x
 --                      repl penv env [] "stdin"
 
--- https://stackoverflow.com/a/44218722
-binary_convert :: [Int] -> Int
-binary_convert [] = 0
-binary_convert (x : xs) = x + 2 * binary_convert xs

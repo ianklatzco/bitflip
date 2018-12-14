@@ -1,5 +1,7 @@
 module Lib where
 
+-- Types
+
 import Data.HashMap.Strict as H (HashMap, empty, fromList, insert, lookup, union)
 
 type Env  = H.HashMap String Val
