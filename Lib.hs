@@ -10,7 +10,7 @@ type Result = (String, Env)
 --- ### Values
 data Val = IntVal Int
          | BoolVal Bool
-         | BinListVal [Int]
+         | BinListVal String
          | ExceptionVal String
     deriving (Eq)
 
@@ -22,7 +22,7 @@ instance Show Val where
 --- ### Expressions
 data Exp = IntExp Int
          | BoolExp Bool
-         | BinListExp [Int]
+         | BinListExp String
          | VarExp String
          | AssignmentExp String Exp
          | ReassignmentExp String Exp
